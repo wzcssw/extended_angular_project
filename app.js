@@ -15,15 +15,17 @@ app.use(session({ store: config.session_redis,db: config.session_redis.db}));
 
 // 静态文件cache
 app.use(staticCache(path.join(__dirname, 'public'), {
-    maxAge: 365 * 24 * 60 * 60
-}))
+    maxAge: 365 * 24 * 60 * 60,
+    alias: {'/': '/index.html'}
+}));
 
-// app.on('error', function(err,ctx){
-//     console.log('-------- 哦也~ 出错了 -----\n\n'
-//         + err +'\n\n-------------------------');
-// });
+app.on('error', function(err,ctx){
+    console.log('-------- 哦也~ 出错了 -----\n\n'
+        + err +'\n\n-------------------------');
+});
 
 // 引入路由
+require('./route')(app);
 require('./api')(app);
 
 app.listen(config.port, function(){
