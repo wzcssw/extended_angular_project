@@ -1,8 +1,18 @@
-<h1>index.html</h1>
-<hr/>
-
-<form action="/api/user/login" method="post">
-	Name:<input type="text" name="name"/><br/>
-	Password:<input type="text" name="password"/><br>
-	&nbsp;&nbsp;<input type="submit" value="submit">
-</form>
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <script src="/angularjs/lib/angular.min.js"></script>
+    <script src="/angularjs/lib/angular-ui-router.min.js"></script>
+    <script src="/angularjs/app.js"></script>
+    <script src="/angularjs/controllers.js"></script>
+    <script src="/angularjs/routes.js"></script>
+</head>
+<body>
+    <div ng-controller="navController">
+        <h2>{{data}}</h2>
+        <hr>
+        Hello, <a href="/#/test">test</a>&nbsp;<a href="/#/test2">test2</a> <br/>
+    </div>
+    <div ui-view></div>
+</body>
+</html>

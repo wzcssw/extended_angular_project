@@ -16,7 +16,7 @@ app.use(session({ store: config.session_redis,db: config.session_redis.db}));
 // 静态文件cache
 app.use(staticCache(path.join(__dirname, 'public'), {
     maxAge: 365 * 24 * 60 * 60,
-    alias: {'/': '/index.html'}
+    alias: {'/': '/html/index.html'}
 }));
 
 app.on('error', function(err,ctx){
