@@ -1,7 +1,11 @@
 var controllers = angular.module('controllers',[]);
 
-controllers.controller('navController', ['$scope', function($scope) {
+controllers.controller('navController', ['$scope','$location', function($scope,$location) {
     $scope.username = "Orange";
+
+    $scope.isActive = function (viewLocation) {
+        return viewLocation === $location.path();
+    };
 }]);
 
 controllers.controller('loginController', ['$scope', function($scope) {

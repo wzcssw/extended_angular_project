@@ -26,10 +26,12 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="/#/test">test <span class="sr-only">(current)</span></a>
+                    <li ng-class="{ active: isActive('/test')}">
+                        <a href="#/test">test</a>
                     </li>
-                    <li><a href="/#/test2">test2</a></li>
+                    <li ng-class="{ active: isActive('/test2')}">
+                        <a href="#/test2">test2</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Link</a></li>
