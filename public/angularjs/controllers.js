@@ -26,9 +26,12 @@ controllers.controller('loginController', ['$rootScope','$scope','userService','
 }]);
 
 controllers.controller('testController', ['$scope','userService', function($scope,userService) {
-    userService.current(function (data) {
-        $scope.result = data;
-    });
+    // 注销
+    $scope.logout = function () {
+        userService.logout(function (data) {
+            $scope.result = data;
+        });
+    }
 }]);
 
 controllers.controller('test2Controller', ['$scope','userService', function($scope,userService) {

@@ -18,6 +18,9 @@ services.factory('httpRequest', function($http) {
         },
         post: function (url,param,successDo,errorDo) {
             this.request("POST",url,param,successDo,errorDo);
+        },
+        delete: function (url,param,successDo,errorDo) {
+            this.request("DELETE",url,param,successDo,errorDo);
         }
     }
 });
@@ -32,6 +35,11 @@ services.factory('userService', function(httpRequest) {
         },
         login: function (param,callback) {
             httpRequest.post('api/user/login',param,function (data) {
+                callback(data);
+            });
+        },
+        logout: function (callback) {
+            httpRequest.delete('api/user/logout',{},function (data) {
                 callback(data);
             });
         }
