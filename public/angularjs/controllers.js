@@ -1,10 +1,19 @@
 var controllers = angular.module('controllers',[]);
 
 
-controllers.controller('navController', ['$scope','$location', function($scope,$location) {
+controllers.controller('navController', ['$scope','$location','$rootScope','userService','$state', function($scope,$location,$rootScope,userService,$state) {
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
+    // 注销
+    $scope.logout = function () {
+        userService.logout(function (data) {
+            if(data.success){
+                $rootScope.current_user = null;
+                $state.go('login');
+            }
+        });
+    }
 }]);
 
 controllers.controller('loginController', ['$rootScope','$scope','userService','$state', function($rootScope,$scope,userService,$state) {
@@ -22,15 +31,8 @@ controllers.controller('loginController', ['$rootScope','$scope','userService','
     }
 }]);
 
-controllers.controller('testController', ['$scope','userService','$state', function($scope,userService,$state) {
-    // 注销
-    $scope.logout = function () {
-        userService.logout(function (data) {
-            if(data.success){
-                $state.go('login');
-            }
-        });
-    }
+controllers.controller('testController', ['$scope','userService','$state','$rootScope', function($scope,userService,$state,$rootScope) {
+    
 }]);
 
 controllers.controller('test2Controller', ['$scope','userService', function($scope,userService) {
