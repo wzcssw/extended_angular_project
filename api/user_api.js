@@ -10,14 +10,19 @@ router.post('/login', function *(next) {
     var password =  this.request.body.password;
     var result = yield http.post('/api/v1/users/login',{name: name,password: password});
 
-    this.session.user = result.user;
-    this.session.user.access_token = result.access_token;
+    if(result.success){
+        this.session.user = result.user;
+        this.session.user.access_token = result.access_token;
+    }
 
     this.body = JSON.stringify(result);
 });
 
 router.get('/current', function *(next) {
-    result =  this.session.user;
+    var result = {};
+    result.user = this.session.user;
+    this.session.user == null ? result.success = false : result.success = true;
+
     this.body = JSON.stringify(result);
 });
 

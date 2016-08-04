@@ -35,7 +35,6 @@ function request(method,path,params) {
             res.on('end', () => {
                 var status_code = parseInt(res.statusCode / 100);
                 if(2 === status_code || 2 === status_code){
-                // if(200 === res.statusCode){
                     resolve(JSON.parse(result));
                 }else{
                     console.log(res.statusCode);

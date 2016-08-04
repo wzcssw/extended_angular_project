@@ -6,6 +6,7 @@
     <script src="/angularjs/lib/ui-bootstrap.js"></script>
     <script src="/angularjs/lib/ui-bootstrap-tpls.js"></script>
     <script src="/angularjs/app.js"></script>
+    <script src="/angularjs/services.js"></script>
     <script src="/angularjs/controllers.js"></script>
     <script src="/angularjs/routes.js"></script>
     <link rel="stylesheet" href="/angularjs/lib/ui-bootstrap-csp.css">
@@ -13,7 +14,7 @@
     <link rel="stylesheet" href="/angularjs/lib/bootstrap-theme.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-default" ng-controller="navController">
+    <nav class="navbar navbar-default" ng-controller="navController" ng-show="current_user">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -32,12 +33,15 @@
                     <li ng-class="{ active: isActive('/test2')}">
                         <a href="#/test2">test2</a>
                     </li>
+                    <li ng-class="{ active: isActive('/login')}">
+                        <a href="#/login">login</a>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Link</a></li>
                     <li class="dropdown" uib-dropdown>
                         <a role="button" class="dropdown-toggle" uib-dropdown-toggle>
-                            {{username}} <b class="caret"></b>
+                            {{current_user.name}} <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
@@ -55,6 +59,10 @@
             </div>
         </div>
     </nav>
-    <div ui-view></div>
+    <div class="container-fluid">
+        <div clss="container">
+            <div ui-view></div>
+        </div>
+    </div>
 </body>
 </html>

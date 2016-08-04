@@ -1,23 +1,47 @@
 var controllers = angular.module('controllers',[]);
 
-controllers.controller('navController', ['$scope','$location', function($scope,$location) {
-    $scope.username = "Orange";
 
+controllers.controller('navController', ['$scope','$location', function($scope,$location) {
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
 }]);
 
-controllers.controller('loginController', ['$scope', function($scope) {
-    $scope.greeting = 'Hola!';
+controllers.controller('loginController', ['$rootScope','$scope','userService','$state', function($rootScope,$scope,userService,$state) {
+    if($rootScope.current_user != null){
+        $state.go('test');
+    }
+    $scope.login = function (name,password) {
+        userService.login({name,password},function (data) {
+            if(data.success){
+                // 登录成功
+                $rootScope.current_user = data.user;
+                $state.go('test');
+            }else{
+                // 登录失败
+                $scope.password = data.info;
+            }
+        });
+    }
 }]);
 
-controllers.controller('testController', ['$scope', function($scope) {
-    $scope.greeting = 'Hola!';
+controllers.controller('testController', ['$scope','userService', function($scope,userService) {
+    userService.current(function (data) {
+        $scope.result = data;
+    });
 }]);
 
-controllers.controller('test2Controller', ['$scope', function($scope) {
+controllers.controller('test2Controller', ['$scope','userService', function($scope,userService) {
     $scope.data = "that's test2!";
+    $scope.login = function (name,password) {
+        userService.login({name,password},function (data) {
+            if(data.success){
+                // 登录成功
+            }else{
+                // 登录失败
+            }
+        });
+    }
 }]);
 
 
