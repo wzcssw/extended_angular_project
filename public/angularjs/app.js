@@ -14,4 +14,5 @@ myApp.run(['$rootScope', 'userService','$state', function($rootScope, userServic
                 $state.go('login');
             }
         });
+
 }]);

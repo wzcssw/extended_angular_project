@@ -8,9 +8,6 @@ controllers.controller('navController', ['$scope','$location', function($scope,$
 }]);
 
 controllers.controller('loginController', ['$rootScope','$scope','userService','$state', function($rootScope,$scope,userService,$state) {
-    if($rootScope.current_user != null){
-        $state.go('test');
-    }
     $scope.login = function (name,password) {
         userService.login({name,password},function (data) {
             if(data.success){
@@ -25,11 +22,13 @@ controllers.controller('loginController', ['$rootScope','$scope','userService','
     }
 }]);
 
-controllers.controller('testController', ['$scope','userService', function($scope,userService) {
+controllers.controller('testController', ['$scope','userService','$state', function($scope,userService,$state) {
     // 注销
     $scope.logout = function () {
         userService.logout(function (data) {
-            $scope.result = data;
+            if(data.success){
+                $state.go('login');
+            }
         });
     }
 }]);
