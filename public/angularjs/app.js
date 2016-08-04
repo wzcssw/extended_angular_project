@@ -1,1 +1,1 @@
-var myApp = angular.module('myApp', ['ui.router','routes', 'controllers']);
+var myApp = angular.module('myApp', ['ui.router','routes', 'controllers','ui.bootstrap']);

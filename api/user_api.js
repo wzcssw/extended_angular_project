@@ -26,4 +26,9 @@ router.delete('/logout', function *(next) {
     this.body = JSON.stringify({success: true});
 });
 
+router.get('/list', function *(next) {
+    var result = yield http.get('/api/v1/users/list');
+    this.body = JSON.stringify(result);
+});
+
 module.exports = router.routes();

@@ -1,7 +1,7 @@
 var controllers = angular.module('controllers',[]);
 
 controllers.controller('navController', ['$scope', function($scope) {
-    $scope.data = "it's nav?? you kiding me?!";
+    $scope.username = "Orange";
 }]);
 
 controllers.controller('loginController', ['$scope', function($scope) {
