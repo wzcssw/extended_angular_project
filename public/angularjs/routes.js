@@ -1,6 +1,10 @@
 var routes = angular.module('routes', ['ui.router']);
 routes.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-    $stateProvider.state('test', {
+    $stateProvider.state('user', {
+        url:'/user',
+        templateUrl:'html/user.html',
+        controller:'userController'
+    }).state('test', {
         url:'/test',
         templateUrl:'html/test.html',
         controller:'testController'
@@ -14,5 +18,5 @@ routes.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
         controller:'loginController'
     }); 
 
-    $urlRouterProvider.otherwise('/test');
+    $urlRouterProvider.otherwise('/user');
 }]);

@@ -8,14 +8,15 @@ function request(method,path,params) {
     return new Promise((resolve,reject)=>{
         var timestemp = getTimeStemp();
         var app_token = config.app_token;
-        var access_token ='41b322e596ae';
+        var access_token = params.access_token || "";
         var sign = getSign(access_token,app_token,timestemp);
 
-        params.app_token = app_token;
-        params.access_token = access_token;
-        params.timestemp = getTimeStemp();
-        params.sign = sign;
-        var postData = querystring.stringify(params);
+        var param = params || {};
+        param.app_token = app_token;
+        param.access_token = access_token;
+        param.timestemp = getTimeStemp();
+        param.sign = sign;
+        var postData = querystring.stringify(param);
         var options = {
             hostname: config.api_host,
             port: config.api_port,

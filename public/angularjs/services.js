@@ -28,19 +28,32 @@ services.factory('httpRequest', function($http) {
 // User Service
 services.factory('userService', function(httpRequest) {
     return {
-        current: function (callback) {
-            httpRequest.get('api/user/current',{},function (data) {
-                callback(data);
+        current: function (param,successDo,errorDo) {
+            httpRequest.get('api/user/current',param,function (data) {
+                successDo(data);
+            },function (data) {
+                errorDo(data);
             });
         },
-        login: function (param,callback) {
+        list: function (param,successDo,errorDo) {
+            httpRequest.get('api/user/list',param,function (data) {
+                successDo(data);
+            },function (data) {
+                errorDo(data);
+            });
+        },
+        login: function (param,successDo,errorDo) {
             httpRequest.post('api/user/login',param,function (data) {
-                callback(data);
+                successDo(data);
+            },function (data) {
+                errorDo(data);
             });
         },
-        logout: function (callback) {
-            httpRequest.delete('api/user/logout',{},function (data) {
-                callback(data);
+        logout: function (param,successDo,errorDo) {
+            httpRequest.delete('api/user/logout',param,function (data) {
+                successDo(data);
+            },function (data) {
+                errorDo(data);
             });
         }
     }

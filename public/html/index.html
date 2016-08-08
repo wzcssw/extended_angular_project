@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="myApp">
 <head>
+    <script src="js/jquery-1.9.1.min.js"></script>
     <script src="/angularjs/lib/angular.min.js"></script>
     <script src="/angularjs/lib/angular-ui-router.min.js"></script>
     <script src="/angularjs/lib/ui-bootstrap.js"></script>
@@ -27,6 +28,9 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    <li ng-class="{ active: isActive('/user')}">
+                        <a href="#/user">用户信息</a>
+                    </li>
                     <li ng-class="{ active: isActive('/test')}">
                         <a href="#/test">test</a>
                     </li>

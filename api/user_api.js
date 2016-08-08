@@ -32,7 +32,8 @@ router.delete('/logout', function *(next) {
 });
 
 router.get('/list', function *(next) {
-    var result = yield http.get('/api/v1/users/list');
+    var page = this.query.page || 1;
+    var result = yield http.get('/api/v1/users/list',{access_token: this.session.user.access_token,page: page});
     this.body = JSON.stringify(result);
 });
 

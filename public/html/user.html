@@ -1,0 +1,72 @@
+<style media="screen">
+    a{
+        padding: 2px 10px;
+    }
+    a:hover{
+        cursor: pointer;
+    }
+    .wb_label {
+        position: relative;
+        min-width: 180px;
+        height: 40px;
+        float: left;
+        border: 1px solid #DAD8D8;
+        margin-right: 15px;
+        margin-bottom: 10px;
+        padding: 8px;
+    }
+    .wb_name {
+        float: left;
+        min-width: 77px;
+        text-align: left;
+        margin-left: 10px;
+    }
+    .app-modal-window .modal-dialog {
+        width: 85%;
+    }
+</style>
+<div class="table-operation">
+    <h3>用户信息-{{total_count}}-{{current_page}}</h3>
+    <div style="height:30px;">
+        <button style="float: right;margin-left: 10px;" type="button" class="btn btn-default">导出</button>
+        <div class='pagination'>
+            <uib-pagination style="margin-top: -20px;" first-text="首页" last-text="尾页" previous-text="上一页" next-text="下一页" ng-change="pageChanged()" items-per-page=20 total-items="total_count" ng-model="current_page" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false"></uib-pagination>
+            <div style="float: right;position: relative;top: -20px;">
+                跳转到第<input style="width: 40px;" id="go_page" type="text"></input>页
+                <button type="button" class="btn btn-sm btn-default" ng-click="setPage()">确定</button>
+            </div>
+        </div>
+        <button style="float: right;width: 5%;" ng-click="search()" class="btn btn-default">搜索</button>
+        <input style="width: 13%;float: right;margin-left: 5px;margin-right: 5px;" type="text" ng-model="q" class="form-control" id="hos_q" placeholder="名称 、拼音">
+        <select style="width: 6%;float: right;" ng-change="search()" ng-model="city_id" class="form-control">
+            <option value="">全部</option>
+            <option ng-repeat="city in cities" value={{city.id}}>{{city.name}}</option>
+        </select>
+        <button type="button" style="float: right;margin-left: 5px;margin-right: 5px;" class="btn btn-default">备用button</button>
+    </div>
+</div>
+<table class="table table-bordered table-hover">
+    <tr style="background-color:#f6f6f6;">
+        <td>#</td>
+        <td>账户名</td>
+        <td>电话</td>
+        <td>生日</td>
+        <td>备注</td>
+        <td>创建日期</td>
+        <td></td>
+    </tr>
+    <tr ng-repeat="user in users">
+        <td>{{user.id}}</td>
+        <td>{{user.name}}</td>
+        <td>{{user.phone}}</td>
+        <td>{{user.birthday | date:'yyyy-MM-dd'}}</td>
+        <td>{{user.description}}</td>
+        <td>{{user.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
+        <td>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class='pagination'>
+    <uib-pagination style="margin-left: 10px;margin-top: -20px;" first-text="首页" last-text="尾页" previous-text="上一页" next-text="下一页" ng-change="pageChanged()" items-per-page=20 total-items="total_count" ng-model="current_page" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false"></uib-pagination>
+</div>
