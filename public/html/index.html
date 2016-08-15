@@ -6,6 +6,7 @@
     <script src="angularjs/lib/angular-ui-router.min.js"></script>
     <script src="angularjs/lib/ui-bootstrap.js"></script>
     <script src="angularjs/lib/ui-bootstrap-tpls.js"></script>
+    <script src="angularjs/lib/angular-confirm.min.js"></script>
     <script src="angularjs/services.js"></script>
     <script src="angularjs/controllers.js"></script>
     <script src="angularjs/routes.js"></script>
@@ -22,13 +23,10 @@
     <nav class="navbar navbar-default" ng-controller="navController" ng-show="current_user">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Brand</a>
+                <a href="/" class="navbar-brand" style="width:140px">
+                    <img src="images/tongxin.png" alt="tongxin"/>
+                    <span style="float:left;margin-top:-24px;margin-left:33px;display:block;">Extended</span>
+                </a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -40,9 +38,6 @@
                     </li>
                     <li ng-class="{ active: isActive('/test2')}">
                         <a href="#/test2">test2</a>
-                    </li>
-                    <li ng-class="{ active: isActive('/login')}">
-                        <a href="#/login">login</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

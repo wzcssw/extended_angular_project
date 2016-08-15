@@ -5,8 +5,8 @@ services.factory('httpRequest', function($http) {
     return {
         request: function (method,url,param,successDo,errorDo) {
             var request_object = { method: method,url: url };
-            //注意: 只有GET方法传参使用params其他都用data
-            "GET" === method ? request_object.params = param : request_object.data = param;
+            //注意: GET和DELETE方法传参使用params其他都用data
+            ("GET" === method || "DELETE" === method)? request_object.params = param : request_object.data = param;
             $http(request_object).then(function successCallback(response) {
                 successDo(response.data);
             }, function errorCallback(response) {
@@ -21,6 +21,9 @@ services.factory('httpRequest', function($http) {
         },
         delete: function (url,param,successDo,errorDo) {
             this.request("DELETE",url,param,successDo,errorDo);
+        },
+        put: function(url,param,successDo,errorDo) {
+            this.request("PUT",url,param,successDo,errorDo);
         }
     }
 });
@@ -51,6 +54,20 @@ services.factory('userService', function(httpRequest) {
         },
         logout: function (param,successDo,errorDo) {
             httpRequest.delete('api/user/logout',param,function (data) {
+                successDo(data);
+            },function (data) {
+                errorDo(data);
+            });
+        },
+        delete: function (param,successDo,errorDo) {
+            httpRequest.delete('api/user/delete',param,function (data) {
+                successDo(data);
+            },function (data) {
+                errorDo(data);
+            });
+        },
+        update: function (param,successDo,errorDo) {
+            httpRequest.put('api/user/update',param,function (data) {
                 successDo(data);
             },function (data) {
                 errorDo(data);

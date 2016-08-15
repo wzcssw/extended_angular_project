@@ -5,35 +5,19 @@
     a:hover{
         cursor: pointer;
     }
-    .wb_label {
-        position: relative;
-        min-width: 180px;
-        height: 40px;
-        float: left;
-        border: 1px solid #DAD8D8;
-        margin-right: 15px;
-        margin-bottom: 10px;
-        padding: 8px;
-    }
-    .wb_name {
-        float: left;
-        min-width: 77px;
-        text-align: left;
-        margin-left: 10px;
-    }
     .app-modal-window .modal-dialog {
         width: 85%;
     }
 </style>
-<div class="table-operation">
+<div class="table-operation" style="margin-bottom: 10px;">
     <h3>用户信息</h3>
     <div style="height:30px;">
         <button style="float: right;margin-left: 10px;" type="button" class="btn btn-default">导出</button>
         <div class='pagination'>
             <uib-pagination style="margin-top: -20px;" first-text="首页" last-text="尾页" previous-text="上一页" next-text="下一页" ng-change="pageChanged()" items-per-page=20 total-items="total_count" ng-model="current_page" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false"></uib-pagination>
             <div style="float: right;position: relative;top: -20px;">
-                跳转到第<input style="width: 40px;" id="go_page" type="text"></input>页
-                <button type="button" class="btn btn-sm btn-default" ng-click="setPage()">确定</button>
+                <input style="width: 40px;" id="go_page" type="text"></input>
+                <button type="button" class="btn btn-sm btn-default" ng-click="setPage()">跳转</button>
             </div>
         </div>
         <button style="float: right;width: 5%;" ng-click="search()" class="btn btn-default">搜索</button>
@@ -63,10 +47,43 @@
         <td>{{user.description}}</td>
         <td>{{user.created_at | date:'yyyy-MM-dd HH:mm'}}</td>
         <td>
+            <a class="btn btn-default btn-danger btn-xs" ng-click="delete_user(user.id)" confirm="你确定要删除该用户吗？">删除</a>
+            <a class="btn btn-default btn-primary btn-xs" ng-click="edit_user(user)">编辑</a>
         </td>
+    </tr>
+    <tr ng-show="users.length==0">
+        <td colspan=7>(没有相关信息)</td>
     </tr>
     </tbody>
 </table>
 <div class='pagination'>
     <uib-pagination style="margin-left: 10px;margin-top: -20px;" first-text="首页" last-text="尾页" previous-text="上一页" next-text="下一页" ng-change="pageChanged()" items-per-page=20 total-items="total_count" ng-model="current_page" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false"></uib-pagination>
 </div>
+
+<!-- 编辑用户 -->
+<script type="text/ng-template" id="edit_user.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">编辑用户</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="user_birthday">生日</label>
+                <input type="text" ng-model="user.birthday" class="form-control"  id='user_birthday' placeholder="生日">
+            </div>
+            <div class="col-md-6">
+                <label for="user_phone">手机</label>
+                <input type="text" ng-model="user.phone" class="form-control" id='user_phone' placeholder="手机">
+            </div>
+            <div class="col-md-12">
+                <label for="user_remark">备注</label>
+                <textarea ng-model="user.description" class="form-control"  id='user_remark' placeholder="备注"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="save(user)">保存</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">取消</button>
+    </div>
+</script>

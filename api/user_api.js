@@ -18,7 +18,7 @@ router.post('/login', function *(next) {
     this.body = JSON.stringify(result);
 });
 
-router.get('/current', function *(next) {
+router.get('/current', function *(next) { // 当前登录用户
     var result = {};
     result.user = this.session.user;
     this.session.user == null ? result.success = false : result.success = true;
@@ -31,9 +31,25 @@ router.delete('/logout', function *(next) {
     this.body = JSON.stringify({success: true});
 });
 
-router.get('/list', function *(next) {
+router.get('/list', function *(next) { // 所有用户列表
+    var access_token = this.session.user.access_token;
     var page = this.query.page || 1;
-    var result = yield http.get('/api/v1/users/list',{access_token: this.session.user.access_token,page: page});
+    var q = this.query.q || '';
+    var result = yield http.get('/api/v1/users/list',{access_token: access_token,page: page,q: q});
+    this.body = JSON.stringify(result);
+});
+
+router.delete('/delete', function *(next) {
+    var id = this.query.id;
+    var access_token = this.session.user.access_token;
+    var result = yield http.delete('/api/v1/users/delete',{id: id,access_token: access_token});
+    this.body = JSON.stringify(result);
+});
+
+router.put('/update', function *(next) {
+    var user = this.request.body.user;
+    var access_token = this.session.user.access_token;
+    var result = yield http.put('/api/v1/users/update',{user: JSON.stringify(user),access_token: access_token});
     this.body = JSON.stringify(result);
 });
 

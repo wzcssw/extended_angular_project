@@ -67,6 +67,9 @@ module.exports = {
     },
     delete: function *(path,params) {
         return yield request('DELETE',path,params);
+    },
+    put: function *(path,params) {
+        return yield request('PUT',path,params);
     }
 }
 

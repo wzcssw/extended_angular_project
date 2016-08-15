@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ui.router','routes','services', 'controllers','ui.bootstrap']);
+var myApp = angular.module('myApp', ['ui.router','routes','services', 'controllers','ui.bootstrap','angular-confirm']);
 
 myApp.run(['$rootScope', 'userService','$state', function($rootScope, userService,$state) {
         userService.current({},function (data) {
