@@ -19,10 +19,10 @@ app.use(staticCache(path.join(__dirname, 'public'), {
     alias: {'/': '/html/index.html'}
 }));
 
-app.on('error', function(err,ctx){
-    console.log('-------- 哦也~ 出错了 -----\n\n'
-        + err +'\n\n-------------------------');
-});
+// app.on('error', function(err,ctx){
+//     console.log('-------- 哦也~ 出错了 -----\n\n'
+//         + err +'\n\n-------------------------');
+// });
 
 // 引入路由
 require('./route')(app);
