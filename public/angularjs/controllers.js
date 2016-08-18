@@ -10,6 +10,7 @@ controllers.controller('navController', ['$scope','$location','$rootScope','user
         userService.logout({},function (data) {
             if(data.success){
                 $rootScope.current_user = null;
+                sessionStorage.removeItem("current_user");
                 $state.go('login');
             }
         });
@@ -21,6 +22,7 @@ controllers.controller('loginController', ['$rootScope','$scope','userService','
         userService.login({name,password},function (data) {
             if(data.success){
                 // 登录成功
+                sessionStorage.setItem("current_user", JSON.stringify(data.user));
                 $rootScope.current_user = data.user;
                 $state.go('user');
             }else{
