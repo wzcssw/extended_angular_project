@@ -100,7 +100,7 @@ controllers.controller('privilegeController', ['$scope','rolePrivilegeService', 
     $scope.select_role_id = 1;
     rolePrivilegeService.role_list({},function (data) {
         $scope.roles = data.roles;
-    })
+    });
 
     $scope.select_privilege = function (role_id) {
         $scope.select_role_id = role_id;
@@ -108,6 +108,8 @@ controllers.controller('privilegeController', ['$scope','rolePrivilegeService', 
             $scope.privileges = data.privileges;
         })
     }
+
+    $scope.select_privilege($scope.select_role_id);
 }]);
 
 controllers.controller('testController', ['$scope','userService','$state','$rootScope', function($scope,userService,$state,$rootScope) {
