@@ -75,3 +75,24 @@ services.factory('userService', function(httpRequest) {
         }
     }
 });
+
+
+// RolePrivilege Service
+services.factory('rolePrivilegeService', function(httpRequest) {
+    return {
+        role_list: function (param,successDo,errorDo) {
+            httpRequest.get('api/role_privilege/role_list',param,function (data) {
+                successDo(data);
+            },function (data) {
+                errorDo(data);
+            });
+        },
+        privilege_list: function (param,successDo,errorDo) {
+            httpRequest.get('api/role_privilege/privilege_list',param,function (data) {
+                successDo(data);
+            },function (data) {
+                errorDo(data);
+            });
+        }
+    }
+});

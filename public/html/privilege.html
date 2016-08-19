@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="list-group">
+            <a ng-class="['list-group-item',{'active':(role.id==select_role_id)}]" style="cursor: pointer;" ng-repeat="role in roles" ng-click="select_privilege(role.id)">{{role.name}}</a>
+        </div>
+    </div>
+    <div class="col-md-10">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>#</th>
+                <th>标识</th>
+                <th>中文名</th>
+                <th>创建时间</th>
+                <th></th>
+            </tr>
+            <tr ng-show="privileges.length==0">
+                <td colspan="8">(没有相关记录)</td>
+            </tr>
+            <tr ng-repeat="privilege in privileges">
+                <td>{{privilege.id}}</td>
+                <td>{{privilege.name}}</td>
+                <td>{{privilege.remark}}</td>
+                <td>{{privilege.created_at}}</td>
+                <td>
+                    <a class="btn btn-success btn-xs color_box" ng-click="">保存</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+

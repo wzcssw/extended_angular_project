@@ -96,21 +96,20 @@ controllers.controller('editUserController', ['$scope','$uibModalInstance','user
     }
 }]);
 
-controllers.controller('testController', ['$scope','userService','$state','$rootScope', function($scope,userService,$state,$rootScope) {
+controllers.controller('privilegeController', ['$scope','rolePrivilegeService', function($scope,rolePrivilegeService) {
+    $scope.select_role_id = 1;
+    rolePrivilegeService.role_list({},function (data) {
+        $scope.roles = data.roles;
+    })
 
-}]);
-
-controllers.controller('test2Controller', ['$scope','userService', function($scope,userService) {
-    $scope.data = "that's test2!";
-    $scope.login = function (name,password) {
-        userService.login({name,password},function (data) {
-            if(data.success){
-                // 登录成功
-            }else{
-                // 登录失败
-            }
-        });
+    $scope.select_privilege = function (role_id) {
+        $scope.select_role_id = role_id;
+        rolePrivilegeService.privilege_list({role_id: role_id},function (data) {
+            $scope.privileges = data.privileges;
+        })
     }
 }]);
 
+controllers.controller('testController', ['$scope','userService','$state','$rootScope', function($scope,userService,$state,$rootScope) {
 
+}]);
